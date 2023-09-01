@@ -1,0 +1,50 @@
+classDiagram
+    class Usuario{
+    -int IdUsuario
+    -str Email
+    -str Nombre
+    -int Numero_telefono
+    }
+
+    class Plan{
+    -int IdPlan
+    -int Precio
+    -boolean HD
+    -boolean UltraHD
+    -int Pantallas
+    -boolean PelicualsYProgramasIlimitados
+    }
+
+    class Tipo_Plan{
+    -int IdTipo_Plan
+    -str Estandar
+    -str Basico
+    -str Premium
+    }
+
+    class Suscripcion{
+    -int IdSuscripcion
+    -date FechaDeSuscripcion
+    }
+
+    class Tarjeta{
+    -int IdTarjeta
+    -str Nombre
+    -str Apellido
+    -int Numero_Tarjeta
+    -date Fecha_Vencimiento
+    -int Codigo_seguridad
+    }
+
+    class Tipo_tarjeta{
+    -int IdTipo_tarjeta
+    -str Mastercard
+    -str AmericanExpress
+    -str Diners
+    }
+
+Usuario "1" -- "1" Plan
+Usuario "1" -- "1..*" Tarjeta 
+Suscripcion "1" -- "1"Usuario
+Tarjeta "1" -- Tipo_tarjeta
+Plan "1" -- Tipo_Plan
