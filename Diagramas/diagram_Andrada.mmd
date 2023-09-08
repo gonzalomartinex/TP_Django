@@ -1,0 +1,56 @@
+erDiagram
+
+Cliente{
+    String id_cliente pk
+    String email
+    String password
+    String telefono
+    String nombre
+    Datos_tarjeta datos_tarjeta
+    Boolean cancelacion
+    int numero_actualizacion
+    String nombre_plan fk
+}
+Cliente 1+--1 Plan : tiene
+Cliente 1--1+ FechaxCliente: tiene
+Cliente 1--1 Datos_tarjeta : tiene
+
+Tarjeta{
+    String nombre pk
+    String descripcion
+}
+Tarjeta 1+--1 Datos_tarjeta : tiene
+
+Plan{
+    String nombre pk
+    int precio
+    Boolean HD
+    Boolean ultra_HD
+    int pantallas_vista_simultanea
+    Boolean programas_ilimitados
+    Boolean cancelar_a_voluntad
+}
+
+Fecha{
+    String id_fecha
+    int dia
+    int mes
+    int year
+}
+Fecha 1--1+ FechaxCliente : a
+
+FechaxCliente{
+    String id_fecha pk, fk
+    String id_cliente pk, fk
+}
+
+Datos_tarjeta{
+    String numero_tarjeta pk
+    String nombre
+    String apellido
+    String codigo_seguridad
+    String id_fecha_vencimiento fk
+    String nombre_tarjeta fk
+}
+
+Datos_tarjeta 1+--1 Fecha : tiene
