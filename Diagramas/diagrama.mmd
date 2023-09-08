@@ -3,15 +3,59 @@ erDiagram
     int IdUsuario PK
     str Email
     str Nombre
+    str Contrasena
     int Numero_telefono
     }
 
-    plan{
-    int IdPlan
-    int Precio
-    boolean 
+    Plan{
+    int IdPlan PK
+    float Precio
+    boolean HD
+    boolean UHD 
+    int Pantallas 
+    boolean pelisYprogramas
+    boolean cancelar
     }
 
-    tipo_plan{
-    
+    Tipo_plan{
+    int IdTipoplan PK
+    str Basico
+    str Estandar
+    str Premium
     }
+
+    Tarjeta{
+    int IdTarjeta PK
+    str NombreTitular
+    str ApellidoTitular
+    int NumTarjeta
+    date FechaVencimiento
+    int CodigoSeguridad
+    }
+
+    TipoTarjeta{
+    int IdTipoTarjeta PK
+    str Mastercard
+    str Visa 
+    str AmericanExpress
+    str Diners
+    }
+    
+    Suscripcion{
+    int idSuscripcion PK
+    date FechaSuscripcion
+    boolean SusActiva
+    int NumAutorizacionTarjeta
+    int IdPlan FK
+    float Precio FK
+    int IdUsuario FK
+    int IdTarjeta FK
+    }
+
+    Usuario }|--|| Plan: tiene
+    Usuario ||--|| Tarjeta: tiene
+    Usuario }|--|| Suscripcion: tiene
+    Suscripcion ||--|| Tarjeta: tiene
+    Suscripcion ||--|| Plan: tiene
+    Tarjeta }|--||  TipoTarjeta: tiene
+    Plan }|--|| Tipo_plan: tiene
