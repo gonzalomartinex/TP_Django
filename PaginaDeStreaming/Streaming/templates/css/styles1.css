@@ -1,3 +1,8 @@
+@keyframes fade-in{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 h1{
     text-align: center;
     color: rgb(211, 211, 211);
@@ -12,8 +17,8 @@ body{
 }
 
 img{
-    height: 100px;;
-    width: 100px;;
+    height: 200px;;
+    width: 200px;;
 }
 
 .centered{
@@ -23,4 +28,8 @@ div{
     height: fit-content;
     width:fit-content;
     
+}
+
+table{
+    animation: fade-in 5s;
 }
