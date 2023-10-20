@@ -1,61 +1,80 @@
 erDiagram
     Usuario{
-    int IdUsuario PK
-    str Email
-    str Nombre
-    str Contrasena
-    int Numero_telefono
+        int IdUsuario PK
+        str Email
+        str Nombre
+        str Contrasena
+        int Numero_telefono
+        string estado
+        date fechainicio
     }
 
     Plan{
-    int IdPlan PK
-    float Precio
-    boolean HD
-    boolean UHD 
-    int Pantallas 
-    boolean pelisYprogramas
-    boolean cancelar
+        int IdPlan PK 
+        str detalle
+    }
+
+    Caracteristicas{
+        int idCaracteristicas PK
+        str caracteristicas
     }
 
     Tipo_plan{
-    int IdTipoplan PK
-    str Basico
-    str Estandar
-    str Premium
+        int IdTipoplan PK
+        str Basico
+        str Estandar
+        str Premium
     }
 
     Tarjeta{
-    int IdTarjeta PK
-    str NombreTitular
-    str ApellidoTitular
-    int NumTarjeta
-    date FechaVencimiento
-    int CodigoSeguridad
+        int IdTarjeta PK
+        str NombreTitular
+        str ApellidoTitular
+        int NumTarjeta
+        date FechaVencimiento
+        int CodigoSeguridad
+        int IdTipoTarjeta FK
+        int NumAutorizacionTarjeta
     }
 
     TipoTarjeta{
-    int IdTipoTarjeta PK
-    str Mastercard
-    str Visa 
-    str AmericanExpress
-    str Diners
-    }
-    
-    Suscripcion{
-    int idSuscripcion PK
-    date FechaSuscripcion
-    boolean SusActiva
-    int NumAutorizacionTarjeta
-    int IdPlan FK
-    float Precio FK
-    int IdUsuario FK
-    int IdTarjeta FK
+        int IdTipoTarjeta PK
+        str descripcion
     }
 
-    Usuario }|--|| Plan: tiene
-    Usuario ||--|| Tarjeta: tiene
-    Usuario }|--|| Suscripcion: tiene
+    Suscripcion{
+        int idSuscripcion PK
+        date FechaSuscripcion
+        boolean SusActiva
+        int NumAutorizacionTarjeta FK
+        int IdPlan FK
+        int IdUsuario FK
+        int IdTarjeta FK
+    }
+
+    UsuarioxSuscripcion{
+    int IdUsuario_detalle PK
+    int IdUsuario FK
+    int idSuscripcion FK
+    str detalle
+    }
+
+    Planxcaracteristicas{
+        int IdPlan_caracteristicas PK
+        int IdPlan FK
+        int idCaracteristicas FK
+        boolean Activa
+        str detalle
+    }
+
+
+    Usuario ||--|{ UsuarioxSuscripcion: tiene
+    Suscripcion ||--|{ UsuarioxSuscripcion: tiene
+    Plan ||--|{ Planxcaracteristicas: tiene
+    Caracteristicas ||--|{ Planxcaracteristicas: tiene
     Suscripcion ||--|| Tarjeta: tiene
-    Suscripcion ||--|| Plan: tiene
+    Suscripcion }|--|| Plan: tiene
     Tarjeta }|--||  TipoTarjeta: tiene
     Plan }|--|| Tipo_plan: tiene
+    Plan ||--|{ Caracteristicas: tiene
+    Usuario ||--|| Tarjeta: tiene
