@@ -1,4 +1,8 @@
-console.log(path_static);
+
+//var path = require('path');
+//var filename = path.basename('/home/alumno/PG3/TP_Django/PaginaDeStreaming/Streaming/static/images/placeholder.png');
+//console.log(filename);
+
 function create_table(){
     const div_contenedor = document.createElement("div");
     div_contenedor.classList = "centered black";
@@ -24,7 +28,7 @@ function create_table(){
 
 function create_image(){
     const image = document.createElement("img");
-    image.src = "././images/placeholder.png";
+    image.src = '/static/images/placeholder.png';
 
     return image
 }
