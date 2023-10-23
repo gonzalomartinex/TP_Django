@@ -9,13 +9,13 @@ function create_table(){
     const tabla = document.createElement("table");
 
     rows = 5;
-    cells = 4;
+    cells = 5;
 
     for (i=0;i<rows;i++){
         row = document.createElement("tr");
         for(e=0;e<cells;e++){
             cell = document.createElement("td");
-            cell.appendChild(create_image());
+            cell.appendChild(create_button());
             row.appendChild(cell);
         }
         tabla.appendChild(row);
@@ -24,6 +24,13 @@ function create_table(){
     div_contenedor.appendChild(tabla);
 
     document.body.insertBefore(div_contenedor, document.getElementById("div1"));
+}
+
+function create_button(){
+    const button = document.createElement("button");
+    button.appendChild(create_image());
+
+    return button
 }
 
 function create_image(){
