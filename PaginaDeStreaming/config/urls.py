@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Streaming.views import frontpage
+from Streaming.views import displaypage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('frontpage/', frontpage, name="frontpage")
+    path('frontpage/', frontpage, name="frontpage"),
+    path('', frontpage, name=""),
+    path('displaypage/', displaypage, name="displaypage")
 ]

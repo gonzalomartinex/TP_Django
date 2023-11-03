@@ -1,0 +1,62 @@
+@keyframes fade-in{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+p{
+    color: rgb(255, 255, 255);
+}
+
+body{
+    background-color:maroon;
+
+    color: white;
+}
+.black{
+    background-color: black;
+    outline-color: black;
+}
+
+.centered{
+    margin: auto;
+}
+div{
+    height: fit-content;
+    width:fit-content;
+}
+
+table{
+    animation: fade-in 5s;
+}
+
+.carousel-item{
+    height: 100%;
+    overflow: hidden;
+    width: 1000px;
+}
+.carousel-item img {
+    width: 100%;
+}
+
+.carousel-inner{
+    height: 100%;;
+    overflow: hidden;
+    width: 1000px;
+}
+.carousel-inner img {
+    width: 100%;
+}
+
+.low-opacity-bg{
+    background-color:rgba(10, 10, 10, 0.699);
+}
+
+img{
+    height: 200px;
+    width: 200px;
+}
