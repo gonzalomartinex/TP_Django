@@ -1,50 +1,105 @@
 classDiagram
+
     class Usuario{
-    -int IdUsuario
-    -str Email
-    -str Nombre
-    -int Numero_telefono
+        -int IdUsuario
+        -str Email
+        -str Nombre
+        -str Contrasena
+        -int Numero_telefono
+        -string estado
+        -date fechainicio
+        
+        +new()
+        +setIdUsuario()
+        +getIdUsuario()
+        +setEmail()
+        +getEmail()
+        +setNombre()
+        +getNombre()
+        +setContrasena()
+        +getContrasena()
+        +setNumero_telefono()
+        +getNumero_telefono()
+        +setestado()
+        +getestado()
+        +setfechainicio()
+        +getfechainicio()
+        +conocerTargeta()
+        +conocerPlan()
+        +conocerSuscripcion()
     }
 
     class Plan{
-    -int IdPlan
-    -int Precio
-    -boolean HD
-    -boolean UltraHD
-    -int Pantallas
-    -boolean PelicualsYProgramasIlimitados
+        -int IdPlan
+        -TipoPlan TipoPlan
+        -detalle detalle
+        -caracteristicas caracteristicas
+        -int Precio
+        -boolean estadocaracteristica
+
+        +new()
+        +conocerTipoPlan()
+        +conocerdetalle()
+        +conocercaracteristicas()
     }
 
-    class Tipo_Plan{
-    -int IdTipo_Plan
-    -str Estandar
-    -str Basico
-    -str Premium
+    class TipoPlan{
+        -int IdTipoplan
+        -str TipoPlan
+
+        +new()
     }
 
-    class Suscripcion{
-    -int IdSuscripcion
-    -date FechaDeSuscripcion
+    class Detalle{
+        -int IdDetalle
+        -str detalle
+
+        +Modificar()
+        }
+
+    class Caracteristicas{
+        -int idCaracteristicas
+        -str nombrecaracteristica
+        -str detallecaracteristica
+
+        +new()
     }
 
     class Tarjeta{
-    -int IdTarjeta
-    -str Nombre
-    -str Apellido
-    -int Numero_Tarjeta
-    -date Fecha_Vencimiento
-    -int Codigo_seguridad
+        -int IdTarjeta
+        -str NombreTitular
+        -str ApellidoTitular
+        -int NumTarjeta
+        -date FechaVencimiento
+        -int CodigoSeguridad
+        -int NumAutorizacionTarjeta
+        -TipoTarjeta TipoTarjeta
+
+        +new()
+        +conocerTipoTarjeta()
+        +generarNumAutorizacionTarjeta()
     }
 
-    class Tipo_tarjeta{
-    -int IdTipo_tarjeta
-    -str Mastercard
-    -str AmericanExpress
-    -str Diners
+    class TipoTarjeta{
+        -int IdTipoTarjeta
+        -str descripcion
+
+        +new()
+    }
+
+    class Suscripcion{
+        -int idSuscripcion
+        -date FechaSuscripcion
+        -boolean SusActiva
+
+        +new()
+        +conocerPlan()
     }
 
 Usuario "1" -- "1" Plan
-Usuario "1" -- "1..*" Tarjeta 
+Detalle "1" -- "1" Plan
+Caracteristicas "1..*" -- "1" Plan
+Usuario "1" -- "1..*" Tarjeta
 Suscripcion "1" -- "1"Usuario
-Tarjeta "1" -- Tipo_tarjeta
-Plan "1" -- Tipo_Plan
+Tarjeta "1" -- "1..*"TipoTarjeta
+Plan "1" -- "1..*"TipoPlan

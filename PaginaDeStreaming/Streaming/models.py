@@ -10,6 +10,7 @@ class Usuario(models.Model):
     contraseña = models.CharField()
     def __str__(self):
         return f'{self.Nombre}, {self.Email}'
+
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
     precio = models.IntegerField()
@@ -20,9 +21,6 @@ class Plan(models.Model):
 
 class TipoPlan(models.Model):
     id_tipo_plan = models.AutoField(primary_key=True)
-    estandar = models.CharField(max_length=255)
-    basico = models.CharField(max_length=255)
-    premium = models.CharField(max_length=255)
 
 class Suscripcion(models.Model):
     id_suscripcion = models.AutoField(primary_key=True)

@@ -21,5 +21,4 @@ from Streaming.views import frontpage
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('frontpage/', frontpage, name="frontpage")
-
 ]
