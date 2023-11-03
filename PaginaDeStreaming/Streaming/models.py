@@ -12,12 +12,12 @@ class TipoPlan(models.Model):
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    email = models.EmailField()
-    nombre = models.CharField(max_length=50)
-    numero_telefono = models.IntegerField()
-    contraseña = models.CharField(max_length=50)
-    estado = models.CharField(max_length=50)
-    fecha_inicio = models.DateField()
+    Email = models.EmailField()
+    Nombre = models.CharField(max_length=50)
+    Numero_telefono = models.IntegerField()
+    Contraseña = models.CharField(max_length=50)
+    Estado = models.CharField(max_length=50)
+    Fecha_inicio = models.DateField()
     def __str__(self):
         return f'{self.Nombre}, {self.Email}'
 
