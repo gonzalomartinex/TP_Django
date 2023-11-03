@@ -1,0 +1,87 @@
+classDiagram
+    class telefono {
+        -int id_telefono
+        -int telefono
+        -string descripcion
+        +set_id_telefono()
+        +get_id_telefono()
+        +set_telefono()
+        +get_telefono()
+        +set_descripcion()
+        +get_descripcion()
+        +new()
+        +modificar_num()
+    }
+
+
+    class Usuario{
+        -int IdUsuario
+        -str contraseña
+        -str Email
+        -str Nombre
+        -str Apellido
+
+        -telefono num_telefono
+        +new()
+        +editar_contraseña()
+    }
+
+    class Plan{
+        -int IdPlan
+        -str detalle
+        +new()
+    }
+
+    class Caracteristicas{
+        -int id_caracteristica
+        -str caracteristica
+        -str detalle
+        +new()
+    }
+
+    class Tipo_Plan{
+        -int IdTipo_Plan
+        -str tipo_plan
+    }
+
+    class caracxplan{
+        -int id_caracxplan
+        -boolean activa
+        -int cant
+        -str descripcion
+    }
+
+    class Suscripcion{
+        -int IdSuscripcion
+        -date FechaDeSuscripcion
+        -boolean estado_sus
+        +cambiar_plan()
+        +cancelar_plan()
+    }
+
+    class Tarjeta{
+        -int IdTarjeta
+        -str Nombre
+        -str Apellido
+        -int Numero_Tarjeta
+        -date Fecha_Vencimiento
+        -int Codigo_seguridad
+        +new()
+        +Solicitar_num_autorizacion()
+    }
+
+    class Tipo_tarjeta{
+        -int IdTipo_tarjeta
+        -str Tipo_tarjeta
+        -str detalle
+    }
+
+Usuario "1" --> "1" Plan
+Suscripcion "1..*" --> "1" Plan
+Plan "1" --> "1..*" caracxplan
+Caracteristicas "1" <-- "1" caracxplan
+Usuario "1" --> "1..*" telefono
+Usuario "1" --> "1..*" Tarjeta 
+Suscripcion "1" <-- "1" Usuario
+Tarjeta "1" <-- Tipo_tarjeta
+Plan "1" --> Tipo_Plan

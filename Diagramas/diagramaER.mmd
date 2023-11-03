@@ -1,5 +1,5 @@
 erDiagram
-    Usuario{
+    Usuario {
         int IdUsuario PK
         str Email
         str Nombre
@@ -9,22 +9,23 @@ erDiagram
         date fechainicio
     }
 
-    Plan{
+    Plan {
         int IdPlan PK 
         str detalle
     }
 
-    Caracteristicas{
+    Caracteristicas {
         int idCaracteristicas PK
-        str caracteristicas
+        str caracteristica
+        str detalle
     }
 
-    Tipo_plan{
+    Tipo_plan {
         int IdTipoplan PK
         str tipo_plan
     }
 
-    Tarjeta{
+    Tarjeta {
         int IdTarjeta PK
         str NombreTitular
         str ApellidoTitular
@@ -32,15 +33,15 @@ erDiagram
         date FechaVencimiento
         int CodigoSeguridad
         int IdTipoTarjeta FK
-        int NumAutorizacionTarjeta
+        int NumAutorizacionTarjeta1
     }
 
-    TipoTarjeta{
+    TipoTarjeta {
         int IdTipoTarjeta PK
         str descripcion
     }
 
-    Suscripcion{
+    Suscripcion {
         int idSuscripcion PK
         date FechaSuscripcion
         boolean SusActiva
@@ -49,21 +50,21 @@ erDiagram
         int IdTarjeta FK
     }
 
-    UsuarioxSuscripcion{
-    int IdUsuarioxSuscripcion PK
-    int IdUsuarioxsuscripcion PK
-    int IdUsuario FK
-    int idSuscripcion FK
-    str detalle
+    UsuarioxSuscripcion {
+        int IdUsuarioxsuscripcion PK
+        int IdUsuario FK
+        int idSuscripcion FK
+        str detalle
     }
 
-    Planxcaracteristicas{
+    Planxcaracteristicas {
         int IdPlan_caracteristicas PK
         int IdPlan FK
         int idCaracteristicas FK
         boolean Activa
         str detalle
     }
+
 
     Usuario ||--|{ UsuarioxSuscripcion: tiene
     Suscripcion ||--|{ UsuarioxSuscripcion: tiene
