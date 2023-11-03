@@ -9,3 +9,6 @@ def frontpage(request):
 def displaypage(request):
     return render(request, "displaypage.html")
 
+def login(request):
+    return render(request, "login.html")
+

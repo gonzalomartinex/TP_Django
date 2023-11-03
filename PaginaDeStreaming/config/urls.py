@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from Streaming.views import frontpage
 from Streaming.views import displaypage
+from Streaming.views import login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('frontpage/', frontpage, name="frontpage"),
     path('', frontpage, name=""),
-    path('displaypage/', displaypage, name="displaypage")
+    path('displaypage/', displaypage, name="displaypage"),
+    path('login/', login, name="login")
 ]
