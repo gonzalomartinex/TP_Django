@@ -37,8 +37,8 @@ def register(request):
 
 def login(request):
     Usuario.objects
-    u = Usuario.objects.filter(email="pepe@gmail.com")
-    print(u)
+    u = Usuario.objects.all()
+    logged = False
 
     raw_input = []
     form = UsuarioLogin
@@ -53,18 +53,31 @@ def login(request):
             form = UsuarioLogin(request.POST)
             raw_input = request.POST
     
-    print(raw_input)
-
-    for i in raw_input.copy():
-        pass
-        ### ME FALTA TERMINAR POR ACA
+    str_input = raw_input.__str__()
+    print('raw_input : ' + str_input)
 
     for x in u:
         print('u: '+x.__str__())
+        print(x.email)
+        print(x.contraseña)
+
+        if str_input.find(x.email) == -1:
+            print("not this one")
+        else:
+            if str_input.find(x.contraseña) == -1:
+                print("not this one")
+            else:
+                logged = True
+        
+
 
     context = {'form': form}
     response = render(request, "register.html", context)
     
+    if logged == True:
+        response.set_cookie('test',True)
+    else:
+        response.set_cookie('test',False)
 
     return response
 
