@@ -43,7 +43,7 @@ def login(request):
     raw_input = []
     form = UsuarioLogin
     if request.method == 'GET':
-        render(request, "register.html")
+        render(request, "login.html")
     
 
     if request.method == 'POST':
@@ -72,7 +72,7 @@ def login(request):
 
 
     context = {'form': form}
-    response = render(request, "register.html", context)
+    response = render(request, "login.html", context)
     
     if logged == True:
         response.set_cookie('test',True)

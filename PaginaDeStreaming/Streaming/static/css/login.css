@@ -19,7 +19,8 @@ body {
     height: fit-content;
     background: black;
     color: #fff;
-    margin: auto;
+    margin:auto;
+    margin-top: 100px;
     padding: 50px 30px;
   }
   

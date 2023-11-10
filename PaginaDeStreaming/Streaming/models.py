@@ -38,27 +38,21 @@ class Caracteristicas(models.Model):
         return f'{self.caracteristica}'
 
 
-class CaracteristicasXPlan(models.Model):
-    esta_activo = models.BooleanField()
-    cantidad = models.IntegerField()
-    descripcion = models.TextField(max_length=250)
-    caracteristica = models.ForeignKey('Caracteristicas' ,on_delete=models.CASCADE)
-    plan = models.ForeignKey('Plan' ,on_delete=models.CASCADE)
-    def __str__(self):
-        return f'Plan: {self.plan}, Caracteristica: {self.caracteristica}, Estado: {self.esta_activo}, Cantidad: {self.cantidad}'
-
-    
 class Plan(models.Model):
     detalle = models.TextField(max_length=255)
     tipo_plan = models.ForeignKey(TipoPlan, on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.tipo_plan}'
 
+class CaracteristicasXPlan(models.Model):
+    esta_activo = models.BooleanField()
+    cantidad = models.IntegerField()
+    descripcion = models.TextField(max_length=250)
+    caracteristica = models.ForeignKey('Caracteristicas' ,on_delete=models.CASCADE)
+    plan = models.ForeignKey(Plan ,on_delete=models.CASCADE)
+    def __str__(self):
+        return f'Plan: {self.plan}, Caracteristica: {self.caracteristica}, Estado: {self.esta_activo}, Cantidad: {self.cantidad}'
 
-
-class Suscripcion(models.Model):
-    id_suscripcion = models.AutoField(primary_key=True)
-    fecha_de_suscripcion = models.DateField()
 
 class Tarjeta(models.Model):
     nombreTitular = models.CharField(max_length=255)

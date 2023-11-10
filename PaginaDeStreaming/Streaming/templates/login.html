@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Pagina de streaming</a>
+          <a class="navbar-brand" href="/frontpage">Pagina de streaming</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,7 +25,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar sesion</a>
+                    <a class="nav-link" href="/register">Registrarse</a>
                 </li>
 
             </ul>
@@ -40,7 +39,7 @@
 
           {% csrf_token %}
           <label>{{form}}</label>
-          <input type="submit" class="btn btn-primary btn-sm" value="Iniciar sesion" id="aeugh"></button>
+          <input type="submit" class="btn btn-primary btn-sm" value="Iniciar Sesion" id="boton"></button>
 
           <a style="text-align: center;" href="cont.html">¿Perdiste tu contrase&ntilde;a?</a><br>
           <a style="text-align: center;" href="register.html">¿No tienes una cuenta?</a>
