@@ -21,9 +21,6 @@ from Streaming.views import displaypage
 from Streaming.views import register
 from Streaming.views import login_fail
 from Streaming.views import login
-from Streaming.views import tarjeta
-from Streaming.views import plan
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('frontpage/', frontpage, name="frontpage"),
@@ -31,7 +28,5 @@ urlpatterns = [
     path('displaypage/', displaypage, name="displaypage"),
     path('register/', register, name="register"),
     path('login/', login, name="login"),
-    path('login_fail/', login_fail, name="login_fail"),
-    path('tarjeta/', tarjeta, name="tarjeta"),
-    path('plan/', plan, name="plan")
+    path('login_fail/', login_fail, name="login_fail")
 ]
