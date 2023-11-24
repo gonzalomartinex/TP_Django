@@ -3,6 +3,7 @@ from .models import *
 from .forms import UsuarioRegister
 from .forms import UsuarioLogin
 from .forms import TarjetaForm
+from .forms import PlanForm
 #from .forms import PlanForm
 
 def frontpage(request):
@@ -33,7 +34,7 @@ def register(request):
     
     if request.method == 'POST':    
         if form.is_valid():
-            response.set_cookie('test',True)
+            response.set_cookie('log',True)
 
     return response
 
@@ -77,9 +78,9 @@ def login(request):
     response = render(request, "login.html", context)
     
     if logged == True:
-        response.set_cookie('test',True)
+        response.set_cookie('log',True)
     else:
-        response.set_cookie('test',False)
+        response.set_cookie('log',False)
 
     return response
 
@@ -89,17 +90,35 @@ def login_fail(request):
 
 def tarjeta(request):
     form = TarjetaForm
+    form2= PlanForm
+    if request.method == 'POST':
+        
+        form = TarjetaForm(request.POST)
+        if form.is_valid():
+            form.save()
 
-    context = {'form': form}
+        form2= PlanForm(request.POST)
+
+        if form2.is_valid():
+            print(form2)
+            form2.save()
+
+    context = {
+        'form': form,
+        'form2' : form2
+        }
     response = render(request, "tarjeta.html", context)
+
+    if request.method == 'POST':    
+        if form.is_valid():
+            response.set_cookie('tarj',form.data)
+
     return response
 
 def plan(request):
 
-    if request.method == 'POST':
-        response.set_cookie('test2',True)
-        ## ME FALTA SEGUIR POR ACA
+    
 
     context = {}
-    response = render(request, "tarjeta.html", context)
+    response = render(request, "plan.html", context)
     return response

@@ -18,7 +18,7 @@ class TarjetaForm(ModelForm):
         model = Tarjeta
         fields= '__all__'
 
-#class PlanForm(ModelForm):
-#    class Meta:
-#        model = Plan
-#        fields = '__all__'
+class PlanForm(ModelForm):
+    class Meta:
+        model = Plan
+        fields = '__all__'
