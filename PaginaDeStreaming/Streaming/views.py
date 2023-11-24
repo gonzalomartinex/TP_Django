@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from .models import *
 from .forms import UsuarioRegister
 from .forms import UsuarioLogin
 from .forms import TarjetaForm
 from .forms import PlanForm
+import datetime
 #from .forms import PlanForm
 
 def frontpage(request):
@@ -17,26 +19,54 @@ def displaypage(request):
 
 def register(request):
     
-    form = UsuarioRegister
+    formU = UsuarioRegister
+    formT = TarjetaForm
+    formP= PlanForm
+
     if request.method == 'GET':
         render(request, "register.html")
     
 
     if request.method == 'POST':
         
-        form = UsuarioRegister(request.POST)
-        if form.is_valid():
-            form.save()
-            #redirect('home')
+        formU = UsuarioRegister(request.POST)
+        if formU.is_valid():
+            print(formU.data)
+            formU.save()
+        
+        formT = TarjetaForm(request.POST)
+        if formT.is_valid():
+            formT.save()
 
-    context = {'form': form}
+        formP= PlanForm(request.POST)
+        if formP.is_valid():
+            print(formP)
+            formP.save()
+
+    context = {
+        'formU': formU,
+        'formT' : formT,
+        'formP' : formP
+        }
     response = render(request, "register.html", context)
     
     if request.method == 'POST':    
-        if form.is_valid():
+        if formU.is_valid() and formP.is_valid() and formT.is_valid():
             response.set_cookie('log',True)
 
+            response.set_cookie('tarj',formT.data)
+            suscripcion = Suscripcion(
+                fecha_suscripcion = datetime.date.today(),
+                SusActiva = True,
+                id_tarjeta = formT.instance,
+                id_plan = formP.instance,
+                id_usuario = formU.instance,
+            )
+            suscripcion.save()
+            
     return response
+
+
 
 def login(request):
     Usuario.objects
@@ -89,6 +119,7 @@ def login_fail(request):
     return render(request,"login_fail.html")
 
 def tarjeta(request):
+    
     form = TarjetaForm
     form2= PlanForm
     if request.method == 'POST':
@@ -112,7 +143,16 @@ def tarjeta(request):
     if request.method == 'POST':    
         if form.is_valid():
             response.set_cookie('tarj',form.data)
+            suscripcion = Suscripcion(
+                fecha_suscripcion = datetime.date.today(),
+                SusActiva = True,
+                id_tarjeta = form.data['numero_tarjeta'],
+                id_plan = form2.data['tipo_plan'],
+                id_usuario = request.COOKIES['id1'],
+            )
+            suscripcion.save()
 
+    
     return response
 
 def plan(request):
