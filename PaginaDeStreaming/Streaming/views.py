@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import *
 from .forms import UsuarioRegister
 from .forms import UsuarioLogin
+from .forms import TarjetaForm
+#from .forms import PlanForm
 
 def frontpage(request):
     return render(request, "frontpage.html")
@@ -84,3 +86,20 @@ def login(request):
 def login_fail(request):
     
     return render(request,"login_fail.html")
+
+def tarjeta(request):
+    form = TarjetaForm
+
+    context = {'form': form}
+    response = render(request, "tarjeta.html", context)
+    return response
+
+def plan(request):
+
+    if request.method == 'POST':
+        response.set_cookie('test2',True)
+        ## ME FALTA SEGUIR POR ACA
+
+    context = {}
+    response = render(request, "tarjeta.html", context)
+    return response
