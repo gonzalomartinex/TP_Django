@@ -18,6 +18,7 @@ body {
     width: fit-content;
     height: fit-content;
     background: black;
+    border-radius: 5px;
     color: #fff;
     margin:auto;
     margin-top: 100px;

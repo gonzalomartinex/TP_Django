@@ -22,12 +22,7 @@
 
                 <li class="nav-item">
                     <a class="btn btn-primary nav-link active btn-outline-dark" role="button" aria-current="page" href="/login">Iniciar sesion</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Registrarse</a>
-                </li>
-
+                </li>                 
             </ul>
           </div>
         </div>
@@ -36,13 +31,12 @@
     <div class="login-box">
         <h1>Iniciar Sesion</h1>
         <form action="" method='POST'>
-
           {% csrf_token %}
           <label>{{form}}</label>
-          <input type="submit" class="btn btn-primary btn-sm" value="Iniciar Sesion" id="boton"></button>
-
-          <a style="text-align: center;" href="cont.html">¿Perdiste tu contrase&ntilde;a?</a><br>
-          <a style="text-align: center;" href="register.html">¿No tienes una cuenta?</a>
+          <button type="submit" class="btn btn-primary btn-sm" id="boton" href="/frontpage">Iniciar Sesion</button>
+          <br>
+          <br>
+          <a style="text-align: center;" href="/register">¿No tienes una cuenta?</a>
         </form>
     </div>
     

@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import UsuarioRegister
 from .forms import UsuarioLogin
+
 
 def frontpage(request):
     return render(request, "frontpage.html")
@@ -82,5 +84,4 @@ def login(request):
     return response
 
 def login_fail(request):
-    
     return render(request,"login_fail.html")
