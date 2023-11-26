@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
- 
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 class TipoTarjeta(models.Model):
@@ -14,15 +15,19 @@ class TipoPlan(models.Model):
     def __str__(self):
         return f'{self.tipo_plan}'
 
-class Usuario(models.Model):
-    email = models.EmailField()
+class Usuario(AbstractBaseUser):
+    email = models.EmailField(max_length=250, unique=True)
+    password = models.CharField(max_length=250, unique=True)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=50)
-    estado = models.BooleanField()
-    fecha_inicio = models.DateField()
+    estado = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['nombre', 'apellido', 'fecha_inicio']
+
     def __str__(self):
         return f'{self.nombre}, {self.email}'
+    
 
 class Telefono(models.Model):
     telefono = models.IntegerField()

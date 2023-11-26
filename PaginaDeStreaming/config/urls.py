@@ -23,7 +23,6 @@ from Streaming.views import register
 from Streaming.views import login_fail
 from Streaming.views import login
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontpage, name="frontpage"),
