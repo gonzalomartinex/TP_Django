@@ -29,6 +29,10 @@ class CustomAuthenticationForm(forms.ModelForm):
     def get_user(self):
         return self.user_cache
 
+class UsuarioRegister(ModelForm):
+    class Meta:
+        model = Usuario
+        fields= ["email","nombre","apellido"]
 
 class UsuarioLogin(ModelForm):
     class Meta:
