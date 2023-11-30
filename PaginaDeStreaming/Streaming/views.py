@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import  messages
 from django.contrib.auth import login
 from .forms import CustomAuthenticationForm
-from .forms import UsuarioRegister
+from .forms import UsuarioRegister, PlanForm
 
 
 def frontpage(request):
@@ -62,6 +62,48 @@ def register(request):
     return response
 
 
+def planView(request):
+    
+    formP = PlanForm
+    context = {
+        'formP': formP
+        }
+    chunks = {}
+    nro = 0
+    plan_dict = {}
+
+    for i in Plan.objects.all():
+        nro = nro +1
+        plan_dict = {}
+        
+        plan_dict.update({"detalle" : i.detalle})
+
+        plan_dict.update({"tipo" : i.tipo_plan})
+
+        ## despues podemos poner las caracteristicas, solo puse tipo y detalle
+
+        chunks.update({"plan_dict"+nro.__str__(): plan_dict})
+    
+    context.update({"chunks" : chunks})
+    response = render(request, "plan.html", context)
+
+    if request.method == "POST":
+        formP = PlanForm(request.POST)
+        if formP.is_valid():
+            eleccion = formP.cleaned_data.get("btn")
+            print(eleccion)
+
+            for x,y in chunks.items():
+                print(y["detalle"])
+
+                
+                if x == eleccion:
+                    print(Plan.objects.filter(detalle =y["detalle"]))
+                    
+                    response.set_cookie('planElegido',Plan.objects.filter(detalle =y["detalle"])) ##aca es en donde se guarda el plan elegido
+    
+    
+    return response
 
 
 def iniciar_sesion(request):

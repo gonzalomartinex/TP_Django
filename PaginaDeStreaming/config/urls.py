@@ -22,6 +22,7 @@ from Streaming.views import displaypage
 from Streaming.views import register
 from Streaming.views import login_fail
 from Streaming.views import login
+from Streaming.views import planView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +32,6 @@ urlpatterns = [
     path('login/', login, name="login"),
     path('frontpage/', frontpage, name="frontpage"),
     path('login_fail/', login_fail, name="login_fail"),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('plan/', planView, name="plan")
 ]
