@@ -9,7 +9,6 @@ admin.site.register(Plan)
 admin.site.register(Tarjeta)
 admin.site.register(Suscripcion)
 admin.site.register(TipoTarjeta)
-admin.site.register(TipoPlan)
 admin.site.register(Caracteristicas)
 admin.site.register(CaracteristicasXPlan)
 

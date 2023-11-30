@@ -5,12 +5,60 @@ from django.contrib.auth.models import User
 from django.contrib import  messages
 from django.contrib.auth import login
 from .forms import CustomAuthenticationForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def frontpage(request):
     return render(request, "frontpage.html")
 
-# Create your views here.
+@login_required
+def selecplan(request):
+    if request.method == "GET":
+        resultados = list()
+        planes = Plan.objects.all()
+        for plan in planes:
+            resultados.append({
+                'plan' : plan,
+                'caracteristicas' : CaracteristicasXPlan.objects.filter(plan=plan)
+            })
+        return render(request, "selecplan.html", context={'planes': resultados})
+    elif request.method == "POST":
+         plan_pk = request.POST['plan']
+         usuario = Usuario.objects.get(email=request.user.email)
+
+
+         if plan_pk:
+            plan = Plan.objects.get(id=plan_pk)
+            nueva_suscripcion = Suscripcion.objects.create(
+                SusActiva=True,
+                usuario=usuario,
+                nombre_plan=plan,
+            )
+            nueva_suscripcion.save()
+            return redirect('/frontpage')
+
+
+def crear_suscripcion(request):
+    if request.method == "POST":
+        plan_pk = request.POST.get('plan_pk')
+        usuario = Usuario.objects.get(email=request.user.email)
+
+        if plan_pk:
+            plan = Plan.objects.get(id=plan_pk)
+            nueva_suscripcion = Suscripcion.objects.create(
+                SusActiva=True,
+                usuario=usuario,
+                nombre_plan=plan,
+            )
+            nueva_suscripcion.save()
+            return redirect('/frontpage')
+    # Manejar casos donde no se hace la solicitud POST correctamente
+    return redirect('/error')
+
+
+
+
 
 
 def displaypage(request):
@@ -48,7 +96,10 @@ def register(request):
         myuser.save()
 
         myusuario = Usuario(email = email, nombre = fname, apellido=lname, password = pass1)
+
         myusuario.save()
+        login(request, myusuario)
+
 
         messages.success(request, "Su cuenta fue creada con éxito.")
     return render(request, 'register.html')
@@ -71,3 +122,4 @@ def iniciar_sesion(request):
 
 def login_fail(request):
     return render(request,"login_fail.html")
+

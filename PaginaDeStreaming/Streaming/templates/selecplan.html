@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selección de Planes</title>
+  <link rel="stylesheet" href="{% static 'css/selecplan.css' %}">
+</head>
+<body>
+  <form action="{% url 'crear_suscripcion' %}" method="post">
+    {% csrf_token %}
+    <input name="plan_pk" type="hidden" value="{{plan.plan.pk}}">
+    <input type="submit" value="Seleccionar" class="btn btn-primary">
+  </form>  
+</body>
+</html>
