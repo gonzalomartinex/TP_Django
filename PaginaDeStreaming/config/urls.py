@@ -17,12 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from Streaming.views import frontpage
-from Streaming.views import displaypage
-from Streaming.views import register
-from Streaming.views import login_fail
-from Streaming.views import login
-from Streaming.views import planView
+from Streaming.views import frontpage, displaypage, register, login_fail, login, planView, tarjetaView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,5 +28,6 @@ urlpatterns = [
     path('frontpage/', frontpage, name="frontpage"),
     path('login_fail/', login_fail, name="login_fail"),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('plan/', planView, name="plan")
+    path('plan/', planView, name="plan"),
+    path('tarjeta/', tarjetaView, name="tarjeta")
 ]

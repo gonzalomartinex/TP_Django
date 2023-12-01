@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import  messages
 from django.contrib.auth import login
 from .forms import CustomAuthenticationForm
-from .forms import UsuarioRegister, PlanForm
+from .forms import UsuarioRegister, PlanForm, TarjetaForm
 
 
 def frontpage(request):
@@ -117,6 +117,19 @@ def iniciar_sesion(request):
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+def tarjetaView(request):
+    formT = TarjetaForm
+    context = {
+        'formT': formT
+        }
+    response = render(request, "tarjeta.html", context)
+    if request.method == 'POST':
+        formT = TarjetaForm(request.POST)
+        if formT.is_valid():
+            formT.save()
+    return response
+
 
 
 def login_fail(request):
