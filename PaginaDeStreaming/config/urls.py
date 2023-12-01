@@ -17,16 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from Streaming.views import frontpage, displaypage, register, login_fail, login, planView, tarjetaView
+from Streaming.views import frontpage, displaypage, registerView, login_failView, loginView, planView, tarjetaView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontpage, name="frontpage"),
     path('displaypage/', displaypage, name="displaypage"),
-    path('register/', register, name="register"),
-    path('login/', login, name="login"),
+    path('register/', registerView, name="register"),
+    path('login/', loginView, name="login"),
     path('frontpage/', frontpage, name="frontpage"),
-    path('login_fail/', login_fail, name="login_fail"),
+    path('login_fail/', login_failView, name="login_fail"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('plan/', planView, name="plan"),
     path('tarjeta/', tarjetaView, name="tarjeta")
