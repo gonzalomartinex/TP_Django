@@ -7,6 +7,10 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth import authenticate
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class CustomAuthenticationForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(label='Contraseña')
 
@@ -43,6 +47,10 @@ class TarjetaForm(ModelForm):
     class Meta:
         model = Tarjeta
         fields= '__all__'
+        widgets= {
+            "fecha_vencimiento": DateInput()
+            
+        }
 
 class PlanForm(forms.Form):
     btn = forms.CharField()

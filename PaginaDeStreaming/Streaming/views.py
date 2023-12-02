@@ -110,6 +110,11 @@ def registerView(request):
     return response
 
 def loginView(request):
+    form = CustomAuthenticationForm
+    context = {'form': form}
+
+    response = render(request, 'login.html', context)
+    
     if request.method == 'POST':
         form = CustomAuthenticationForm(request.POST)
         if form.is_valid():
@@ -117,9 +122,7 @@ def loginView(request):
             login(request, Usuario)
             # Redirige a la página deseada después del inicio de sesión
             return redirect('frontpage.html')
-    else:
-        form = CustomAuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return response
 
 def tarjetaView(request):
     formT = TarjetaForm
