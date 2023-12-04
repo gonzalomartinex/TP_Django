@@ -30,30 +30,34 @@
     {% csrf_token %}
     <div class="login-box">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Dirección de email" Required>
+        <label for="Nombre_Titular">Nombre del titular</label>
+        <input type="text" class="form-control" id="Nombres" name="Nombres" placeholder="Nombre del titular" Required>
     </div>
       <div class="form-group">
-          <label for="username">Nombre de Usuario</label>
-          <input type="text" class="form-control" id="username" name="username" placeholder="Solo letras y números" Required>
+          <label for="Apellidos">Apellidos</label>
+          <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="Apellidos" Required>
       </div>
       <div class="form-group">
-          <label for="fname">Nombre/s</label>
-          <input type="text" class="form-control" id="fname" name="fname" placeholder="Su nombre" Required>
+          <label for="Numero de la tarjeta">Numero de la tarjeta</label>
+          <input type="text" class="form-control" id="Tarjeta" name="Tarjeta" placeholder="Numero de la tarjeta" Required>
       </div>
       <div class="form-group">
-          <label for="lname">Apellido/s</label>
-          <input type="text" class="form-control" id="lname" name="lname" placeholder="Su apellido" Required>
-      </div>
-
-      <div class="form-group">
-          <label for="pass1">Contraseña</label>
-          <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Cree una contraseña" Required>
+          <label for="Codigo">Codigo de seguridad</label>
+          <input type="text" class="form-control" id="Codigo" name="Codigo" placeholder="Codigo de seguridad" Required>
       </div>
       <div class="form-group">
-          <label for="pass2">Confirmar Contraseña</label>
-          <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirme su contraseña" Required>
+          <label for="tipoTarjeta">Tipo de Tarjeta</label>
+          <select class="form-control" id="tipoTarjeta" name="tipoTarjeta" Required>
+              <option value="" autofocus hidden>-</option>
+              {% for tipoTarjeta in tipoTarjetas %}
+                  <option value="{{ tipoTarjeta }}">{{ tipoTarjeta }}</option>
+              {% endfor %}
+          </select>
       </div>
+      <div class="form-group">
+          <label for="date">Fecha de Vencimiento</label>
+          <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha de Vencimiento" Required>
+     </div>
       <button type="submit" class="btn btn-primary btn-sm" value="Registrarse" id="boton">Registrarse</button>
   </div>
   </form>

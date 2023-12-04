@@ -7,10 +7,43 @@
   <link rel="stylesheet" href="{% static 'css/selecplan.css' %}">
 </head>
 <body>
-  <form action="{% url 'crear_suscripcion' %}" method="post">
-    {% csrf_token %}
-    <input name="plan_pk" type="hidden" value="{{plan.plan.pk}}">
-    <input type="submit" value="Seleccionar" class="btn btn-primary">
-  </form>  
+  <section class="plans">
+    <h2>Selecciona el plan que mejor se adapte a tus necesidades</h2>
+    <ul>
+      <li class="plan">
+        <span class="price">USD 6,99/mes</span>
+        <span class="name">Estándar con anuncios</span>
+        <ul class="features">
+          <li>Contenido en HD</li>
+          <li>2 dispositivos compatibles</li>
+          <li>Descarga de contenido</li>
+          <li>Acceso a juegos móviles</li>
+        </ul>
+      </li>
+      <li class="plan">
+        <span class="price">USD 15,49/mes</span>
+        <span class="name">Estándar</span>
+        <ul class="features">
+          <li>Contenido en HD</li>
+          <li>2 dispositivos compatibles</li>
+          <li>Descarga de contenido</li>
+          <li>Acceso a juegos móviles</li>
+          <li>Posibilidad de agregar cupos de miembro extra</li>
+        </ul>
+      </li>
+      <li class="plan">
+        <span class="price">USD 22,99/mes</span>
+        <span class="name">Premium</span>
+        <ul class="features">
+          <li>Contenido en Ultra HD</li>
+          <li>4 dispositivos compatibles</li>
+          <li>Descarga de contenido</li>
+          <li>Acceso a juegos móviles</li>
+          <li>Opción para agregar hasta 2 miembros extras</li>
+        </ul>
+      </li>
+    </ul>
+    <button class="select-plan">Seleccionar plan</button>
+  </section>
 </body>
 </html>

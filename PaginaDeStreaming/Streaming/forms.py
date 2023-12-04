@@ -12,14 +12,14 @@ class CustomAuthenticationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('email', 'password')
+        fields = ('nombre', 'password')
 
     def clean(self):
-        email = self.cleaned_data.get('email')
+        nombre = self.cleaned_data.get('nombre')
         password = self.cleaned_data.get('password')
 
-        if email and password:
-            self.user_cache = authenticate(email=email, password=password)
+        if nombre and password:
+            self.user_cache = authenticate(nombre=nombre, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError('Credenciales inválidas')
             elif not self.user_cache.is_active:
@@ -29,6 +29,10 @@ class CustomAuthenticationForm(forms.ModelForm):
     def get_user(self):
         return self.user_cache
 
+class UsuarioRegister(ModelForm):
+    class Meta:
+        model = Usuario
+        fields= ["email","nombre","apellido"]
 
 class UsuarioLogin(ModelForm):
     class Meta:
@@ -40,7 +44,5 @@ class TarjetaForm(ModelForm):
         model = Tarjeta
         fields= '__all__'
 
-class PlanForm(ModelForm):
-    class Meta:
-        model = Plan
-        fields = '__all__'
+class PlanForm(forms.Form):
+    btn = forms.CharField()
