@@ -14,8 +14,7 @@ def frontpage(request):
     return render(request, "frontpage.html", {"logged_user": logged_user})
 
 def displaypage(request):
-    logged_user = getLoggedUser(request)
-    return render(request, "displaypage.html", {"logged_user": logged_user})
+    return render(request, "displaypage.html")
 
 def register(request):
     response = render(request, "register.html")
@@ -110,4 +109,4 @@ def logout(request):
     return redirect("/")
 
 def getLoggedUser(request: HttpRequest):
-    return request.session.get("user", "Iniciar Sesion")
+    return request.session.get("user", "Iniciar Se")
