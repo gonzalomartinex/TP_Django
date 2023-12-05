@@ -16,14 +16,14 @@ class CustomAuthenticationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('nombre', 'password')
+        fields = ('email', 'password')
 
     def clean(self):
-        nombre = self.cleaned_data.get('nombre')
+        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
 
-        if nombre and password:
-            self.user_cache = authenticate(nombre=nombre, password=password)
+        if email and password:
+            self.user_cache = authenticate(email=email, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError('Credenciales inválidas')
             elif not self.user_cache.is_active:

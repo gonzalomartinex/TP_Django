@@ -28,34 +28,25 @@
     
     <form method="POST" action="" style="margin: auto;">
     {% csrf_token %}
-    <div class="login-box">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Dirección de email" Required>
-    </div>
-      <div class="form-group">
-          <label for="username">Nombre de Usuario</label>
-          <input type="text" class="form-control" id="username" name="username" placeholder="Solo letras y números" Required>
-      </div>
-      <div class="form-group">
-          <label for="fname">Nombre/s</label>
-          <input type="text" class="form-control" id="fname" name="fname" placeholder="Su nombre" Required>
-      </div>
-      <div class="form-group">
-          <label for="lname">Apellido/s</label>
-          <input type="text" class="form-control" id="lname" name="lname" placeholder="Su apellido" Required>
-      </div>
+        <div class="login-box">
+          
+          <div class="form-group">
+              <label for="username">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Solo letras y números" Required>
+          </div>
 
-      <div class="form-group">
-          <label for="pass1">Contraseña</label>
-          <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Cree una contraseña" Required>
+          {{formU}}
+          
+          <div class="form-group">
+              <label for="pass1">Contraseña</label>
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Cree una contraseña" Required>
+          </div>
+          <div class="form-group">
+              <label for="pass2">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirme su contraseña" Required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm" value="Registrarse" id="boton">Registrarse</button>
       </div>
-      <div class="form-group">
-          <label for="pass2">Confirmar Contraseña</label>
-          <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirme su contraseña" Required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-sm" value="Registrarse" id="boton">Registrarse</button>
-  </div>
   </form>
   
         <script type="text/javascript" src="js/login.js"></script>

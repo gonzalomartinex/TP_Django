@@ -29,14 +29,14 @@
     </nav>
     
     <div class="login-box">
-        <h1>Datos de tarjeta</h1>
-        <p>Luego podra introducir otras tarjetas, pero se necesita que introduzca una inicial</p>
+        <h1>Iniciar Sesion</h1>
         <form method="post">
           {% csrf_token %}
-          {{ formT  }}
-          <button type="submit" class="btn btn-primary btn-sm" value="Tarjeta" id="boton">confirmar</button>
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-sm" value="Registrarse" id="boton">Iniciar sesión</button>
           <br>
           <br>
+          <a style="text-align: center;" href="/register">¿No tienes una cuenta?</a>
         </form>
     </div>
     
