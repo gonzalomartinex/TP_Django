@@ -9,9 +9,25 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 
+
+def crearmenu(User):
+    html = "<a href='/frontpage'>home</a>"
+    if User == "superuser":
+        html += "<a href='/reporte'>reporte</a>"    
+        html += "<a href='/grafico'>grafico</a>"
+    elif User == "cliente":
+        html +="<a href='/miperfil'>miperfil</a>"
+    elif User == "visitante":
+        html +="<a href='/login'>login</a>"
+    return html        
+        
+
 def frontpage(request):
     logged_user = getLoggedUser(request)
-    return render(request, "frontpage.html", {"logged_user": logged_user})
+    htmlmenu = crearmenu("cliente")
+    if logged_user is not None:
+        htmlmenu += " " + logged_user
+    return render(request, "frontpage.html", {"logged_user": logged_user,"htmlmenu":htmlmenu})
 
 def displaypage(request):
     return render(request, "displaypage.html")
@@ -109,4 +125,7 @@ def logout(request):
     return redirect("/")
 
 def getLoggedUser(request: HttpRequest):
-    return request.session.get("user", "Iniciar Se")
+    return request.session.get("user")
+
+def contenido(request):
+    return render(request,"contenido.html")

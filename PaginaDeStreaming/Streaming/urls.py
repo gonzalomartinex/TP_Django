@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from Streaming.views import frontpage, displaypage, register, iniciar_sesion, login_fail,selecplan,logout,RegistTarjeta
+from Streaming.views import frontpage, displaypage, register, iniciar_sesion, login_fail,selecplan,logout,RegistTarjeta,contenido
 
 
 urlpatterns = [
@@ -13,7 +13,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('selecplan/', selecplan, name="plan"),
     path('logout/', logout, name='logout'),
-    path('registtargeta/', RegistTarjeta, name='RegistTarjeta')
+    path('registtargeta/', RegistTarjeta, name='RegistTarjeta'),
+    path('contenido/', contenido, name='contenido')
 ]
 
 
