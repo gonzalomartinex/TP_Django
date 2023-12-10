@@ -35,7 +35,7 @@ class Tarjeta(models.Model):
     numero_tarjeta = models.BigIntegerField()
     fecha_vencimiento = models.DateField()
     codigo_seguridad = models.IntegerField()
-    TipoTarjeta = models.ForeignKey(TipoTarjeta, on_delete=models.CASCADE)
+    tipoTarjeta = models.ForeignKey(TipoTarjeta, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.numero_tarjeta}'    

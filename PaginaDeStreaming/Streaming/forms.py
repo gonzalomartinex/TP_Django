@@ -46,7 +46,8 @@ class UsuarioLogin(ModelForm):
 class TarjetaForm(ModelForm):
     class Meta:
         model = Tarjeta
-        fields= '__all__'
+        exclude = ['usuario']
+        ## fields= '__all__'
         widgets= {
             "fecha_vencimiento": DateInput()
             

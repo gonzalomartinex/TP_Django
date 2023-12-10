@@ -145,9 +145,18 @@ def tarjetaView(request):
     if request.method == 'POST':
         formT = TarjetaForm(request.POST)
         if formT.is_valid():
-            formT.save()
+            nombreTitular_ = formT['nombreTitular'].value()
+            apellidoTitular_ = formT['apellidoTitular'].value()
+            numero_tarjeta_ = formT['numero_tarjeta'].value()
+            fecha_vencimiento_ = formT['fecha_vencimiento'].value()
+            codigo_seguridad_ = formT['codigo_seguridad'].value()
+            tipoTarjeta_ = TipoTarjeta.objects.get(id = formT['tipoTarjeta'].value()) 
+            usuario_ = Usuario(request.COOKIES.get("Usuario"))
 
-            sus = Suscripcion(fecha_suscripcion = datetime.date.today(), SusActiva = True, id_tarjeta= formT.instance,id_plan = Plan(request.COOKIES.get('IdT')),id_usuario = Usuario(request.COOKIES.get("Usuario")))
+            myTarjeta = Tarjeta(nombreTitular = nombreTitular_, apellidoTitular = apellidoTitular_, numero_tarjeta = numero_tarjeta_,fecha_vencimiento = fecha_vencimiento_, codigo_seguridad = codigo_seguridad_, tipoTarjeta = tipoTarjeta_, usuario = usuario_)
+            myTarjeta.save()
+
+            sus = Suscripcion(fecha_suscripcion = datetime.date.today(), SusActiva = True, id_tarjeta= Tarjeta.objects.get(numero_tarjeta = numero_tarjeta_) ,id_plan = Plan(request.COOKIES.get('IdT')),id_usuario = Usuario(request.COOKIES.get("Usuario")))
             sus.save()
 
     return response
