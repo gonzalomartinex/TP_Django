@@ -70,7 +70,7 @@ def planView(request):
 
             for x,y in chunks.items():
                 if x == eleccion:
-                    response = redirect("/register")
+                    response = redirect("/tarjeta")
                     
                     idp = Plan.objects.get(detalle =y["detalle"]).id
                     response.set_cookie('Idp',idp)
@@ -110,7 +110,7 @@ def registerView(request):
 
             if not username.isalnum():
                 print("El nombre de usuario no puede contener caracteres especiales.")
-                return redirect('/register')
+                return redirect('/plan')
             
             myuser = User.objects.create_user(username, email_tomado, pass1)
             myuser.first_name = fname
