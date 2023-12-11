@@ -90,7 +90,10 @@
     scroll-behavior: smooth;
   }
 }
-
+.letter_border_{
+  background-color: #000000c0;
+  display: inline-block;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
