@@ -25,8 +25,22 @@
         {% csrf_token %}
         {% for y,z in chunks.items%}
             <div style="background-color:gray;padding: 10%;" class="form-group">
-                <label for="pass2">{{z.tipo}}</label>
+                <h2 for="pass2">{{z.tipo}}</h2>
                 <p>{{ z.detalle }}</p>
+                
+                {% for t, j in cxp.items %}
+                  {% for i in j %}
+                    {% if i.plan == z.id %}
+                      <h5>{{ i.caracteristica }} : </h5>
+                      {% if i.cantidad == 0 %}
+                        <p>{{ i.esta_activo }}</p>
+                      {% else %}
+                        <p>{{ i.cantidad }}</p>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                
                 <button type="submit" class="btn btn-primary btn-sm" value="{{ y }}" name="btn">elegir</button>
             </div>
             

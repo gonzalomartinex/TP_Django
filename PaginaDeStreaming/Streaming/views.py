@@ -36,7 +36,7 @@ def planView(request):
     chunks = {}
     nro = 0
     plan_dict = {}
-
+    cxp = {}
     for i in Plan.objects.all():
         nro = nro +1
         plan_dict = {}
@@ -45,9 +45,20 @@ def planView(request):
 
         plan_dict.update({"tipo" : i.tipo_plan})
 
+        plan_dict.update({"id" : i})
+
         ## despues podemos poner las caracteristicas, solo puse tipo y detalle
 
         chunks.update({"plan_dict"+nro.__str__(): plan_dict})
+        cxp.update({"cxp"+ nro.__str__():CaracteristicasXPlan.objects.filter(plan = i.id)}) 
+        
+        
+    context.update({"cxp": cxp})
+    for o,t in cxp.items():
+        for k in t:
+            if k.plan == "t2":
+                print(k)
+        
     
     context.update({"chunks" : chunks})
     response = render(request, "plan.html", context)
@@ -56,17 +67,14 @@ def planView(request):
         formP = PlanForm(request.POST)
         if formP.is_valid():
             eleccion = formP.cleaned_data.get("btn")
-            print(eleccion)
 
             for x,y in chunks.items():
-                print(y["detalle"])
-
-                
                 if x == eleccion:
-                    print(Plan.objects.filter(detalle =y["detalle"]))
                     response = redirect("/register")
-                    idt = Plan.objects.get(detalle =y["detalle"]).id
-                    response.set_cookie('IdT',idt) ##aca es en donde se guarda el plan elegido
+                    
+                    idp = Plan.objects.get(detalle =y["detalle"]).id
+                    response.set_cookie('Idp',idp)
+
                     
     
     
@@ -115,7 +123,6 @@ def registerView(request):
             
 
             response = redirect("/tarjeta")
-            print(Usuario.objects.filter(email =email_tomado))
             response.set_cookie('Usuario',Usuario.objects.get(email =email_tomado).id)
             messages.success(request, "Su cuenta fue creada con éxito.")
     return response
@@ -156,7 +163,7 @@ def tarjetaView(request):
             myTarjeta = Tarjeta(nombreTitular = nombreTitular_, apellidoTitular = apellidoTitular_, numero_tarjeta = numero_tarjeta_,fecha_vencimiento = fecha_vencimiento_, codigo_seguridad = codigo_seguridad_, tipoTarjeta = tipoTarjeta_, usuario = usuario_)
             myTarjeta.save()
 
-            sus = Suscripcion(fecha_suscripcion = datetime.date.today(), SusActiva = True, id_tarjeta= Tarjeta.objects.get(numero_tarjeta = numero_tarjeta_) ,id_plan = Plan(request.COOKIES.get('IdT')),id_usuario = Usuario(request.COOKIES.get("Usuario")))
+            sus = Suscripcion(fecha_suscripcion = datetime.date.today(), SusActiva = True, id_tarjeta= Tarjeta.objects.get(numero_tarjeta = numero_tarjeta_) ,id_plan = Plan(request.COOKIES.get('Idp')),id_usuario = Usuario(request.COOKIES.get("Usuario")))
             sus.save()
 
     return response
